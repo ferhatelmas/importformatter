@@ -14,14 +14,15 @@ Usage
 
 ::
 
-    Usage: format-imports.py [options]
+    usage: format-imports.py [-h] [-a APPLICATIONS [APPLICATIONS ...]]
+                         [-s STDLIB_FILES [STDLIB_FILES ...]]
 
     Groups, sorts, and formats import statements.
 
-    Options:
-    -h, --help            show this help message and exit
-    -a APPLICATION, --application=APPLICATION
-    -s STDLIB_FILES, --stdlib-file=STDLIB_FILES
+    optional arguments:
+      -h, --help            show this help message and exit
+      -a APPLICATIONS [APPLICATIONS ...], --application APPLICATIONS [APPLICATIONS ...]
+      -s STDLIB_FILES [STDLIB_FILES ...], --stdlib-file STDLIB_FILES [STDLIB_FILES ...]
                             File(s) containing additional module names to add to
                             the standard library set.
 

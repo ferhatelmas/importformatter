@@ -3,8 +3,6 @@ Groups, sorts, and prints formatted imports statements.
 """
 import ast
 import logging
-import operator
-import os
 from collections import defaultdict
 
 
@@ -48,10 +46,10 @@ SPECIAL_MODULES = frozenset((
 
 
 class ImportCollector(ast.NodeVisitor):
-    def __init__(self, name, stdlib, *args, **kwargs):
+    def __init__(self, names, stdlib, *args, **kwargs):
         super(ImportCollector, self).__init__(*args, **kwargs)
-        self.name = name
-        if self.name is None:
+        self.names = names
+        if not self.names:
             logger.warning('No application name provided')
 
         self.stdlib = stdlib
@@ -76,7 +74,7 @@ class ImportCollector(ast.NodeVisitor):
         return name in self.stdlib
 
     def is_application(self, name):
-        return self.name is not None and name.startswith(self.name)
+        return any(map(lambda n: name.startswith(n), self.names))
 
     def visit_Import(self, node):
         for alias in node.names:
